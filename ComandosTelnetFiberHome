@@ -1,0 +1,160 @@
+ 0. add dm_debug {[-slot] [<1-8>|<11-18>]}*1 {[-cmd] <cmdid>}*1
+ 1. apply Onuportmirrorapply slot <1-18> pon <1-16> onu <1-128>
+ 2. apply fec_batch slot [<1-8>|<11-18>] link <1-16> onulist <onulist>
+ 3. apply loop_detect slot [<1-8>|<11-18>] link <1-16> onu <1-128> port <portlist>
+ 4. apply onu_port_vlan_mapping_cfg
+ 5. apply packet_control slot [<1-8>|<11-18>] link <1-16> onu <1-128> port <portlist>
+ 6. apply port_ps_mode_cfg slot [<1-8>|<11-18>] link <1-16> onu <1-128>
+ 7. apply user_dhcp_serv_para_cfg slot [<1-8>|<11-18>] link <1-16> onu <1-128>
+ 8. apply veip_mgr_vlan slot [<1-8>|<11-18>] link <1-16> onu <1-128>
+ 9. apply web_cfg_mng slot [<1-8>|<11-18>] link <1-16> onu <1-128>
+10. bind acl_qos_rule slot [<1-8>|<11-18>] link <1-16> onu <1-128> port <0-24> {uplink_profile <0-128> downlink_profile <0-128> }*8
+11. bind ethernet_schedule slot [<1-8>|<11-18>] link <1-16> onu <1-128> prof_id <0-128>
+12. bind optmodule_alarm_threshold slot [<1-8>|<11-18>] link <1-16> onu <1-128> port [<0-24>|null] prof_id [<1-64>|null]
+13. bind packet_control slot [<1-8>|<11-18>] link <1-16> onu <1-128> port <1-32> prof_id <0-128>
+14. cd [..|device|fdb|gpononu|gponlinecard|igmp|ngn|qos|service|stp|uplink|vlan|epononu|tdm|rip|ospf|route]
+15. clear
+16. del bandwidth_profile id <1-256> name <profile_name> type [iptv|data|voice|tdm|integrated|data2|data3|data4|com]
+17. del data_profile_service id <1-256> serviceid <1-6>
+18. del data_service slot [<1-8>|<11-18>] link <1-16> onu <1-128> port <1-24> serviceid <1-6>
+19. del dm_debug {[-slot] [<1-8>|<11-18>]}*1 {[-cmd] <cmdid>}*1
+20. del manage_vlan slot [<1-8>|<11-18>] link <1-16> onu <1-128> mgr_id <1-4>
+21. del onu_port_vlan_mapping_cfg port <port>
+22. del service_bandwidth slot [<1-8>|<11-18>] link <1-16> onu <1-128> type [iptv|data|voice|tdm|integrated|data2|data3|data4|com]
+23. del service_profile_v2 type [onu|bw|data|igmp|voice] id [<1-256>|all]
+24. del veip_mgr_vlan slot [<1-8>|<11-18>] link <1-16> onu <1-128> veip_port <veip_port> mgr_id <mgr_id>
+25. del wifi_serv_wlan slot [<1-8>|<11-18>] link <1-16> onu <1-128> [index <1-4>|all]
+26. help
+27. list { <search_string>}*3
+28. reset default_cfg slot [<1-8>|<11-18>] link <1-16> onu <1-128> default_cfg <default_cfg>
+29. reset feport slot [<1-8>|<11-18>] link <1-16> onu <1-128> fe <fe_list>
+30. reset slot [<1-8>|<11-18>] link <1-16> onulist <onulist>
+31. save {[synchronation]}*1
+32. set aging_time slot [<1-8>|<11-18>] link <1-16> onu <1-128> time <0-300>
+33. set apply_data_service slot [<1-8>|<11-18>] link <1-16> onu <1-128> port <1-24>
+34. set auth_type slot [<1-8>|<11-18>] link <1-16> onulist <onulist> type [mac|loid|loidonceon|psw|pswonceon]
+35. set authorization slot [<1-8>|<11-18>] link <1-16> type [5006-02|5006-02A|5006-03|5006-04|5006-05|5006-05A|5006-06A|5006-06B|5006-06C|5006-06D|5006-07A|5006-07B|5006-08A|5006-08B|other1|other2|other3|other4|other6|other7|5006-03C|5006-04C|5006-02C|5006-05C|5006-09A|5006-09B|5006-10|5006-12|5006-07C|5006-16|5006-06A-A|5006-10B|HG220|5006-04-P1|5006-01-A|5006-04-P2|5006-01-B|5200-04-A|5200-10-A|5200-10-B|HG226|5006-03-AK|5200-07-A|5200-07-B|5200-09-A|5200-09-B|5006-09-AK|5006-07-AK|5006-10-AK|5006-04-P4|5006-04-F1|5006-04-E|5006-EPON-SFU|other|5506-04-B|5506-04-A|5506-06-E|5506-07-B|5506-07-A2|5506-04-C1|5506-07-A1|5506-07-B1|5506-09-A1|5506-09-B1|5506-10-A1|5506-10-B1|5506-04-F1|5506-04-G1|5506-04-A1G|5506-04-B2G|5506-04-B2|5506-SFU|5506-06-EG|5506-02-AKW|5506-04-D|5506-01-A1|5506-01-B1|5506-04-P1|5506-02-A|5506-02-B|HG260|5006-15|5006-20|5006-11|HG266|5506-06-A|5506-06-G|5506-09-A1K|5506-07-A1K|5506-10-A1K|HG261|5006-30|5121-8GR|5121-4GP|5121-4G|5161-CGF|5161-CEF] onuid <1-128> phy_id <phy_id_str> {[password] [<password>|null]}*1 {[logic_sn] <logic_sn_str> password [<password>|null]}*1
+36. set authstatus slot [<1-8>|<11-18>] link <1-16> onu <1-128> status [auth|preauth|reserved]
+37. set bandwidth_profile id <1-256> name <profile_name> type [iptv|data|voice|tdm|integrated|data2|data3|data4|com] fix <16-128000> assure <0-128000> max <48-128000>
+38. set crc_threshold slot [<1-8>|<11-18>] link <1-16> onu <1-128> port <portlist> up_threshold <value> down_threshold <value>
+39. set data_profile_feport id <1-256> name <profile_name> {[onoff] [enable|disable]}*1 {[auto] [enable|disable]}*1 {[speed] [10M|100M|1000M]}*1 {[duplex] [full|half]}*1 {[flowcontrol] [enable|disable]}*1 {[limit_onoff] [enable|disable]}*1 {[up_speed] <0-1000000>}*1 {[down_speed] <0-1000000>}*1
+40. set data_profile_service id <1-256> serviceid <1-6> {[tag_type] [tag|untag]}*1 {[priority] [<0-7>|null]}*1 {[vlanid] [<1-4085>|null]}*1 {[encrypt] [enable|disable]}*1 {[cvlan_mode] [tag|translation|transparent]}*1 {[cvlanid] [<1-4085>|null]}*1 {[cvlancos] [<0-7>|null]}*1 {[qinq] [enable|disable]}*1 {[vlanname] <vlan_str>}*1 {[svlanid] [<1-4085>|null]}*1 {[svlancos] [<0-7>|null]}*1
+41. set data_service slot [<1-8>|<11-18>] link <1-16> onu <1-128> port <1-24> serviceid <1-6> tag_type [tag|untag|tls] priority <priority_str> vlanid <vlan_id> encrypt [enable|disable] cvlan_mode [tag|translation|transparent] cvlanid <cvlan_id> cvlancos <cvlan_cos> qinq [enable|disable] {vlanname <vlan_str> svlanid <1-4085> svlancos <svlan_cos>}*1 {[service_type] [unicast|multicast]}*1
+42. set dm_debug <0-4> {[-slot] [<1-8>|<11-18>]}*1 {[-cmd] <cmdid>}*1 {[-dir] [all|send|recv]}*1 {[-name] [enable|disable]}*1 {[-timestamp] [enable|disable]}*1 {[-print] [enable|disable]}*1 {[-head] [display|hide|only]}*1 {[-ascii] [enable|disable]}*1 {[-resolve] [enable|disable]}*1
+43. set dos_attack_defend slot [<1-8>|<11-18>] link <1-16> onu <1-128> {[ip_land] [enable|disable]}*1 {[tcp_blat] [enable|disable]}*1 {[udp_blat] [enable|disable]}*1 {[null_scanning] [enable|disable]}*1 {[tcp_xmas_scan] [enable|disable]}*1 {[tcp_syn_fin_scan] [enable|disable]}*1 {[tcp_syn_error] [enable|disable]}*1 {[tcp_short_hdr] [enable|disable]}*1 {[tcp_frag_error] [enable|disable]}*1 {[icmpv4_fragment] [enable|disable]}*1 {[icmpv6_fragment] [enable|disable]}*1 {[icmpv4_long_ping] [enable|disable]}*1 {[icmpv6_long_ping] [enable|disable]}*1
+44. set fan_control slot [<1-8>|<11-18>] link <1-16> onu <1-128> start_temp <0-60> stop_temp <0-60>
+45. set fe_loop slot [<1-8>|<11-18>] link <1-16> onu <1-128> port <0-24> loop [disable|interior|exterior]
+46. set fec_batch slot [<1-8>|<11-18>] link <1-16> onulist <onulist> status [enable|disable]
+47. set fec_enable slot [<1-8>|<11-18>] link <1-16> onu <1-128> [enable|disable]
+48. set feport_property slot [<1-8>|<11-18>] link <1-16> onu <1-128> port <1-24> onoff [enable|disable] auto [enable|disable] speed [10M|100M|1000M] duplex [full|half] flowcontrol [enable|disable]
+49. set feport_rate slot [<1-8>|<11-18>] link <1-16> onu <1-128> port <1-24> onoff [enable|disable] up_speed <0-1000000> down_speed <0-1000000>
+50. set force_optic_switch slot [<1-8>|<11-18>] link <1-16> onu <1-128>
+51. set gemport_encrypt slot [<1-8>|<11-18>] link <1-16> onu <1-128> gemport <gemport_list> encrypt [enable|disable]
+52. set gpononu default maxservicebandwidth [1000m|100m]
+53. set igmp_profile id <1-64> name <profile_name> dvlan_type [untag|tag] dvlanid [<1-4085>|null] dvlancos [<0-7>|null] pvlan_type [transparent|tag|retag|remove] {pvlanid [<1-4085>|null] pvlancos [<0-7>|null]}*2
+54. set loop_detect slot [<1-8>|<11-18>] link <1-16> onu <1-128> port <1-24> status [disactivated|activated] {interval <10-3600>}*1
+55. set mac_limit slot [<1-8>|<11-18>] link <1-16> onu <1-128> port <0-24> limit <0-255>
+56. set manage_vlan slot [<1-8>|<11-18>] link <1-16> onu <1-128> mgr_id <1-4> {[name] <mgr_name>}*1 {[port] <0-3>}*1 {[tag_type] [tag|untag]}*1  {[svlan_label] <hexnum>}*1  {[svlanid] <1-4085>}*1 {[svlan_cos] [<0-7>|null]}*1 {[cvlan_label] <hexnum>}*1  {[cvlanid] [<1-4085>|null]}*1 {[cvlan_cos] [<0-7>|null]}*1 {[ip] <A.B.C.D>}*1 {[mask] <1-32>}*1 {[gateway] <A.B.C.D>}*1
+57. set multicast slot [<1-8>|<11-18>] link <1-16> onu <1-128> port <1-24> dvlan_type [untag|tag] dvlanid [<1-4085>|null] dvlancos [<0-7>|null] pvlan_type [transparent|tag|retag|remove] {pvlanid [<1-4085>|null] pvlancos [<0-7>|null]}*2
+58. set onu_local_manage_config slot <1-18> link <1-16> onu <1-128> config_enable_switch [enable|disable] console_switch [enable|disable] telnet_switch [enable|disable] web_switch [enable|disable]
+59. set onu_local_manage_global_config console_switch [enable|disable] telnet_switch [enable|disable] web_switch [enable|disable]
+60. set onu_port_mirror disable slot <1-18> link <1-16> onu <1-128> {mirroredport <portlist>}*1
+61. set onu_port_mirror enable slot <1-18> link <1-16> onu <1-128>      {mirrorport <1-24> mirroredport <portlist> direction <0-2>}*1
+62. set onu_port_vlan_mapping_cfg port <port> service_type [data|iptv|voice] vlan <1-4085>
+63. set onu_speed_limit active_type  [pon|lan_port|stream]
+64. set onu_speed_limit mode slot [<1-8>|<11-18>] link <1-16> onulist <onulist>  mode [local|remote]
+65. set onubr [<1-8>|<11-18>] <ponno> <onuno> mgrip init
+66. set onubr [<1-8>|<11-18>] <ponno> <onuno> sn <sn> mgr {<1-65535> <name> [all|pon|ge1|ge2] [untag|tag] svlan <1-65535> <1-65535> <1-65535> cvlan <1-65535> <1-65535> <1-65535> ip <A.B.C.D> mask <A.B.C.D> gateway <A.B.C.D>}*4
+67. set opticpower_scout slot [<1-8>|<11-18>] link <1-16> onu [<1-128>|null] status [on|off] {period <period>}*1
+68. set password_auth action [add|delete] password <pwd_str> {[slot] [<1-8>|<11-18>|null]}*1 {[link] [<ponno>|null]}*1 {[onu] [<onuno>|null]}*1
+69. set performance_onoff slot [<1-8>|<11-18>] link <1-16> onu <1-128> type [port|optic|env|cpu] onoff [enable|disable]
+70. set pon_onoff slot [<1-8>|<11-18>] link <1-16> onu <1-128> status [on|off] {interval <off_time>}*1
+71. set port_ps_mode_cfg slot [<1-8>|<11-18>] link <1-16> onu <1-128> port <1-32> {[status] [enable|disable]}*1 {[pri] [low|medium|high|highest]}*1 {[power_min] <0-3>}*1 {[power_max] <0-3>}*1 {[mode] [force|normal]}*1
+72. set port_separate slot [<1-8>|<11-18>] link <1-16> onu <1-128> separate [enable|disable]
+73. set pppoe_simulation_test_start slot [<1-8>|<11-18>] link <1-16> onu <1-128> port <portlist> user <user_name> password <password> dial_timeout <dial_timeout> redial_times <redial_times> svlan_vid [<svlan_vid>|null] svlan_cos <svlan_cos> cvlan_vid [<cvlan_vid>|null] cvlan_cos <svlan_cos>
+74. set pppoe_simulation_test_stop slot [<1-8>|<11-18>] link <1-16> onu <1-128> port <portlist>
+75. set profile_bind_v2 id <1-256> action [refresh|attach|detach] {slot [<1-8>|<11-18>] link <1-16> onulist <onulist> }*1
+76. set ps_mode_cfg slot [<1-8>|<11-18>] link <1-16> onu <1-128> mode [auto|manual]
+77. set remote_manage_cfg slot [<1-8>|<11-18>] link <1-16> onu <1-128> {[tr069] [enable|disable] acs_url <acs_url> acl_user <acl_user> acl_pswd <acl_pswd>}*1 {[inform] [enable|disable] interval <0-4294967295> port <0-65534> user <user> pswd <pswd>}*1 {[middleware] [enable|disable] url <url> port <0-65534>}*1
+78. set rstp_onoff slot [<1-8>|<11-18>] link <1-16> onu <1-128> status [enable|disable]
+79. set service_bandwidth slot [<1-8>|<11-18>] link <1-16> onu <1-128> type [iptv|data|voice|tdm|integrated|data2|data3|data4|com] fix <16-128000> assure <0-128000> max <48-128000>
+80. set service_map_type slot [<1-8>|<11-18>] link <1-16> onu <1-128> type [eth_priority|vlanid|priority+vlanid|auto] {inner_protocol_label <hexnum> outer_protocol_label <hexnum>}*1 {[port_map_mode] [each|several]}*1
+81. set service_profile_onu_v2 id <1-256> name <profile_name> onutype [5006-02|5006-02A|5006-03|5006-04|5006-05|5006-05A|5006-06A|5006-06B|5006-06C|5006-06D|5006-07A|5006-07B|5006-08A|5006-08B|other1|other2|other3|other4|other6|other7|5006-03C|5006-04C|5006-02C|5006-05C|5006-09A|5006-09B|5006-10|5006-12|5006-07C|5006-16|5006-06A-A|5006-10B|HG220|5006-04-P1|5006-01-A|5006-04-P2|5006-01-B|5200-04-A|5200-10-A|5200-10-B|HG226|5006-03-AK|5200-07-A|5200-07-B|5200-09-A|5200-09-B|5006-09-AK|5006-07-AK|5006-10-AK|5006-04-P4|5006-04-F1|5006-04-E|5006-EPON-SFU|other|5506-04-B|5506-04-A|5506-06-E|5506-07-B|5506-07-A2|5506-04-C1|5506-07-A1|5506-07-B1|5506-09-A1|5506-09-B1|5506-10-A1|5506-10-B1|5506-04-F1|5506-04-G1|5506-04-A1G|5506-04-B2G|5506-04-B2|5506-SFU|5506-06-EG|5506-02-AKW|5506-04-D|5506-01-A1|5506-01-B1|5506-04-P1|5506-02-A|5506-02-B|HG260|5006-15|5006-20|5006-11|HG266|5506-06-A|5506-06-G|5506-09-A1K|5506-07-A1K|5506-10-A1K|HG261|5006-30|5121-8GR|5121-4GP|5121-4G|5161-CGF|5161-CEF] bw_id [<1-256>|null]
+82. set service_profile_port_v2 id <1-256> {porttype [fe|voice] port <1-24> ds_id [<1-256>|null] is_id [<1-64>|null] vs_id [<1-64>|null]}
+83. set static_route slot [<1-8>|<11-18>] link <1-16> onu <1-128> {route <A.B.C.D> mask <1-32> gateway <A.B.C.D>}*8
+84. set unauthorization slot [<1-8>|<11-18>] link <1-16> onu [<1-128>|all]
+85. set user_dhcp_serv_para_cfg slot [<1-8>|<11-18>] link <1-16> onu <1-128>  index <index> {[lan_ip] [unknown|ipv4|ipv6|ipv4z|ipv6z|dns] <lan_ip> mask <0-32> [enable|disable] dhcp_pool_start [unknown|ipv4|ipv6|ipv4z|ipv6z|dns] <dhcp_pool_start_ip> mask <0-32> dhcp_pool_end [unknown|ipv4|ipv6|ipv4z|ipv6z|dns] <dhcp_pool_start_ip> mask <0-32> dhcp_pri_dns [unknown|ipv4|ipv6|ipv4z|ipv6z|dns] <dhcp_pri_dns> mask <0-32> dhcp_sec_dns [unknown|ipv4|ipv6|ipv4z|ipv6z|dns] <dhcp_sec_dns> mask <0-32> dhcp_gateway [unknown|ipv4|ipv6|ipv4z|ipv6z|dns] <dhcp_pri_dns> mask <0-32>}*1 {[lease_time] <0-4294967295>}*1 {[dhcp_pool_type] [pc|camera|stb|iphone]}*1
+86. set veip_mgr_par slot [<1-8>|<11-18>] link <1-16> onu <1-128> veip_port <veip_port> port_type [veip] mgr_channel [enable|disable] {model [tr069|snmp] item <item>}*187. set veip_mgr_vlan slot [<1-8>|<11-18>] link <1-16> onu <1-128> veip_port <veip_port> mgr_id <mgr_id> {[name] <mgr_name>}*1 {[ip_type] [static|dhcp]}*1 {[ip_addr] [ipv4|ipv6|ipv4z|ipv6z] <ip_addr> <0-32>}*1 {[gateway] [ipv4|ipv6|ipv4z|ipv6z] <gateway> <0-32>}*1 {[pri_dns] [ipv4|ipv6|ipv4z|ipv6z] <pri_dns> <0-32>}*1 {[sec_dns] [ipv4|ipv6|ipv4z|ipv6z] <sec_dns> <0-32>}*1 {[protocol] [tcp|udp]}*1 {[port] <0-65535>}*1 {[priority] <0-63>}*1 {[tag_type] [tag|untag]}*1 {[svlan_label] <hexnum>}*1 {[svlanid] [<1-4085>|null]}*1 {[svlan_cos] [<0-7>|null]}*1 {[cvlan_label] <hexnum>}*1 {[cvlanid] [<1-4085>|null]}*1 {[cvlan_cos] [<0-7>|null]}*1
+88. set voice_profile id <1-64> name <profile_name> {[sig_vlanid] <1-4085>}*1 {[codec] [G711U|G711A|G723|G729]}*1 {[fax_mode] [transparent|t38]}*1 {[silence] [enable|disable]}*1 {[echoCancel] [enable|disable]}*1 {[input_gain] <input_gain>}*1 {[output_gain] <output_gain>}*1 {[dtmf_mode] [transparent|rfc2833]}*1 {[svlan_id] <0-4085>}*1 {[svlan_state] [enable|disable]}*1 {[out_cos] [<0-7>|null]}*1 {[in_cos] [<0-7>|null]}*1
+89. set web_cfg_mng slot [<1-8>|<11-18>] link <1-16> onu <1-128>  index <index> {[web_user] <web_user> web_password <web_password> group [common|admin]}*1
+90. set whitelist {[phy_addr] address <address> password [<pwd_str>|null]}*1 {[password] password <pwd_str>}*1 {[logic_sn] sn <sn_str> password [<pswd_str>|null]}*1 action [add|delete] {slot [<1-8>|<11-18>|null] link [<ponno>|null] onu [<onuno>|null] type [5006-02|5006-02A|5006-03|5006-04|5006-05|5006-05A|5006-06A|5006-06B|5006-06C|50
+06-06D|5006-07A|5006-07B|5006-08A|5006-08B|other1|other2|other3|other4|other6|other7|5006-03C|5006-04C|5006-02C|5006-05C|5006-09A|5006-09B|5006-10|5006-12|5006-07C|5006
+-16|5006-06A-A|5006-10B|HG220|5006-04-P1|5006-01-A|5006-04-P2|5006-01-B|5200-04-A|5200-10-A|5200-10-B|HG226|5006-03-AK|5200-07-A|5200-07-B|5200-09-A|5200-09-B|5006-09-A
+K|5006-07-AK|5006-10-AK|5006-04-P4|5006-04-F1|5006-04-E|5006-EPON-SFU|other|5506-04-B|5506-04-A|5506-06-E|5506-07-B|5506-07-A2|5506-04-C1|5506-07-A1|5506-07-B1|5506-09-
+A1|5506-09-B1|5506-10-A1|5506-10-B1|5506-04-F1|5506-04-G1|5506-04-A1G|5506-04-B2G|5506-04-B2|5506-SFU|5506-06-EG|5506-02-AKW|5506-04-D|5506-01-A1|5506-01-B1|5506-04-P1|
+5506-02-A|5506-02-B|HG260|5006-15|5006-20|5006-11|HG266|5506-06-A|5506-06-G|5506-09-A1K|5506-07-A1K|5506-10-A1K|HG261|5006-30|5121-8GR|5121-4GP|5121-4G|5161-CGF|5161-CE
+F|null]}*1
+91. set wifi_serv_cfg slot [<1-8>|<11-18>] link <1-16> onu <1-128> wifi [enable|disable] district [etsi|fcc] channel <0-13> {[standard] [802.11b|802.11g|802.11b/g|802.11n|802.11bgn]}*1 {[txpower] <0-40>}*1 {[frequency] [2.4ghz|5.8ghz]}*1
+92. set wifi_serv_wlan slot [<1-8>|<11-18>] link <1-16> onu <1-128> index <1-4> ssid [enable|disable] [<ssid>|null] hide [enable|disable] authmode [open|shared|wepauto|wpa_psk|wpa|wpa2psk|wpa2|wpa/wpa2|wpa_psk/wpa2psk|waipsk|wai] encrypt_type [none|wep|tkip|aes|tkipaes|wpi] wpakey [<wpakey>|null] interval <0-4194303> {[radius_serv] [unknown|ipv4|ipv6|ipv4z|ipv6z|dns] <radius_serv> port <0-65535> pswd <pswd>}*1 {[wep_length] [40bit|104bit] key_index <1-4> wep_key [<wep_key1>|null] [<wep_key2>|null] [<wep_key3>|null] [<wep_key4>|null]}*1 {[wapi_serv_addr] <A.B.C.D> <0-65535>}*1
+93. show OnuPortmirror slot <1-18> pon <1-16> onu <1-128>
+94. show [authorization|discovery] slot [<1-8>|<11-18>] link <1-16>
+95. show [dos_attack_defend|vlan_mapping|fan_control|aging_time|fec_enable|ps_mode_cfg|veip_mgr|energy_saving_cfg] slot [<1-8>|<11-18>] link <1-16> onu <1-128>
+96. show [environment_status|static_route|power_info|gemport|fec|pon_pdu|ps_info|energy_saving_status] slot [<1-8>|<11-18>] link <1-16> onu <1-128>
+97. show [hg_ver|wifi_status|wifi_info|wan_serv|rmt_manage|wifi_serv] slot [<1-8>|<11-18>] link <1-16> onu <1-128>
+98. show [ps_info] slot [<1-8>|<11-18>] link <1-16> onu <1-128> port <1-32>
+99. show [ps_mode_cfg] slot [<1-8>|<11-18>] link <1-16> onu <1-128> port <1-32>
+100. show [rstp_bridge|cpu_using|optic_module|multicast_table|onu_time|manage_vlan|e1_status|rtt_value] slot [<1-8>|<11-18>] link <1-16> onu <1-128>
+101. show acl_qos_rule slot [<1-8>|<11-18>] link <1-16> onu <1-128> port <0-24>
+102. show auth_type slot [<1-8>|<11-18>] link <1-16> onu <1-128>
+103. show catv_para_info slot <slot> pon <pon> onu <onu>
+104. show com_stat slot [<1-8>|<11-18>] link <1-16> onu <1-128> cport <1-4>
+105. show crc_threshold slot [<1-8>|<11-18>] link <1-16> onu <1-128>
+106. show data_service slot [<1-8>|<11-18>] link <1-16> onu <1-128> port <1-24>
+107. show dm_debug
+108. show ethernet_schedule slot [<1-8>|<11-18>] link <1-16> onu <1-128>
+109. show fe_loop slot [<1-8>|<11-18>] link <1-16> onu <1-128>
+110. show fec_batch slot [<1-8>|<11-18>] link <1-16> onulist <onulist>
+111. show feport_property slot [<1-8>|<11-18>] link <1-16> onu <1-128> port <1-24>
+112. show feport_rate slot [<1-8>|<11-18>] link <1-16> onu <1-128> port <1-24>
+113. show feport_status slot [<1-8>|<11-18>] link <1-16> onu <1-128>
+114. show gpononu default maxservicebandwidth
+115. show history
+116. show local_onu_ver slot [<1-8>|<11-18>] link <1-16>
+117. show loop_detect slot [<1-8>|<11-18>] link <1-16> onu <1-128>
+118. show mac_limit slot [<1-8>|<11-18>] link <1-16> onu <1-128>
+119. show mac_list slot [<1-8>|<11-18>] link <1-16> onu <1-128> port <0-24> {lookup <mac_address>}*1
+120. show multicast_service slot [<1-8>|<11-18>] link <1-16> onu <1-128>
+121. show online slot [<1-8>|<11-18>] link <1-16>
+122. show onu_last_on_and_off_time slot [<1-8>|<11-18>] link <1-16> onu <1-128>
+123. show onu_local_manage_config slot <1-18> pon <1-16> onu <1-128>
+124. show onu_local_manage_global_config
+125. show onu_port_vlan_mapping_cfg port [<port>|all]
+126. show onu_speed_limit active_type
+127. show onu_speed_limit mode_cfg slot [<1-8>|<11-18>] link <1-16> onulist <onulist>
+128. show onu_speed_limit really_active_type slot [<1-8>|<11-18>] link <1-16> onu <1-128>
+129. show onu_speed_limit really_mode slot [<1-8>|<11-18>] link <1-16> onu <1-128>
+130. show onu_state slot [<1-8>|<11-18>] link <1-16> onulist <onulist>
+131. show onu_vendor_and_equipment_info slot [<1-8>|<11-18>] link <1-16>
+132. show onu_ver slot [<1-8>|<11-18>] link <1-16>
+133. show opticpower_scout slot [<1-8>|<11-18>] link <1-16> onu [<1-128>|null]
+134. show optmodule_alarm_threshold slot [<1-8>|<11-18>] link <1-16> onu <1-128> port [<0-24>|null]
+135. show packet_control slot [<1-8>|<11-18>] link <1-16> onu <1-128> port <1-32>
+136. show password_auth_table slot [<1-8>|<11-18>|all]
+137. show performance_onoff slot [<1-8>|<11-18>] link <1-16> onu <1-128> type [port|optic|env|cpu]
+138. show port_separate slot [<1-8>|<11-18>] link <1-16> onu <1-128>
+139. show powered_status slot [<1-8>|<11-18>] link <1-16> onu <1-128>
+140. show pppoe_simulation_test_result slot [<1-8>|<11-18>] link <1-16> onu <1-128> port <portlist>
+141. show profile_bind_v2 id [<1-256>|all]
+142. show profile_binding_info slot [<1-8>|<11-18>] link <1-16> onu <1-128>
+143. show rstp_onoff slot [<1-8>|<11-18>] link <1-16> onu <1-128>
+144. show rstp_port slot [<1-8>|<11-18>] link <1-16> onu <1-128> port <1-24>
+145. show service_bandwidth slot [<1-8>|<11-18>] link <1-16> onu <1-128>
+146. show service_map_type slot [<1-8>|<11-18>] link <1-16> onu <1-128>
+147. show service_profile_v2 type [onu|bw|data|igmp|voice] id [<1-256>|all]
+148. show unauth_discovery
+149. show user_dhcp_serv_para_cfg slot [<1-8>|<11-18>] link <1-16> onu <1-128>
+150. show vlan_multicast_statistic slot [<1-8>|<11-18>] link <1-16> onu <1-128> port <1-24> vlanid [<1-4085>|4088]
+151. show voip_circuit slot [<1-8>|<11-18>] link <1-16> onu <1-128> vport <1-24>
+152. show web_cfg_mng slot [<1-8>|<11-18>] link <1-16> onu <1-128>
+153. show whitelist [phy_addr|password|logic_sn]
+154. show whitelist_status [phy_addr|password|logic_sn] [select|all] {[address] <address>}*1 {[password] <pwd_str>}*1 {[sn] <sn_str> password <sn_str>}*1
